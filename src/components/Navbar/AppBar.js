@@ -44,13 +44,6 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          {/* <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}
-          >
-            Logo
-          </Text> */}
           <Logo h="6" />
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />

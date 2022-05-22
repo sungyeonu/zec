@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { Logo } from './Logo';
 import AppBar from './components/Navbar/AppBar';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           </VStack>
         </Grid>
       </Box>
+      <Footer />
     </ChakraProvider>
   );
 }
