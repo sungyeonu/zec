@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import { Logo } from '../../Logo';
-import { DesktopNav } from './DesktopNav';
+import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 
 export default function WithSubnavigation() {
