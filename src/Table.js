@@ -9,38 +9,34 @@ export default function MainTable({ data }) {
       {
         Header: '#',
         accessor: 'id',
-        // isNumeric: true,
       },
       {
         Header: 'name',
         accessor: 'name',
-        // isNumeric: false,
       },
       {
         Header: 'price (Zcash)',
         accessor: 'priceZEC',
-        // isNumeric: true,
+        Cell: props => new Intl.NumberFormat().format(props.value),
       },
       {
         Header: 'price (USD)',
         accessor: 'priceUSD',
-        // isNumeric: true,
+        Cell: props => new Intl.NumberFormat().format(props.value),
       },
 
       {
-        Header: '% 1h (ZEC)',
+        Header: '1h % (ZEC)',
         accessor: 'oneHrZEC',
-        // isNumeric: true,
       },
       {
-        Header: '% 24h (ZEC)',
+        Header: '24h % (ZEC)',
         accessor: 'twentyFourHrZEC',
-        // isNumeric: true,
       },
       {
         Header: 'market cap (ZEC)',
         accessor: 'marketcapZEC',
-        // isNumeric: true,
+        Cell: props => new Intl.NumberFormat().format(props.value),
       },
     ],
     []
@@ -56,10 +52,7 @@ export default function MainTable({ data }) {
           {headerGroups.map(headerGroup => (
             <Tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <Th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  //   isNumeric={column.isNumeric}
-                >
+                <Th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   <chakra.span pl="4">
                     {column.isSorted ? (
@@ -81,12 +74,7 @@ export default function MainTable({ data }) {
             return (
               <Tr {...row.getRowProps()}>
                 {row.cells.map(cell => (
-                  <Td
-                    {...cell.getCellProps()}
-                    // isNumeric={cell.column.isNumeric}
-                  >
-                    {cell.render('Cell')}
-                  </Td>
+                  <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
                 ))}
               </Tr>
             );

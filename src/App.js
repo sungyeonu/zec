@@ -1,7 +1,6 @@
 import { Box, ChakraProvider, Text, theme } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Table from './Table';
-import Table2 from './SortTable';
 import AppBar from './components/Navbar/AppBar';
 import Footer from './Footer';
 
@@ -22,7 +21,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <AppBar />
-      <Box minH="100vh" justifyContent="center">
+      <Box marginX="12">
         <Table data={data} />
       </Box>
       <Box>
