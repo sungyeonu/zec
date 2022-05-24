@@ -17,27 +17,13 @@ function App() {
       .then(res => res.json())
       .then(data => setData(data))
       .catch(error => console.log(error));
-  });
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
       <AppBar />
       <Box minH="100vh" justifyContent="center">
-        {/* <Table data={data} /> */}
-        <Table2 />
-        {/* <Grid minH="100vh" p={3}>
-          <VStack spacing={8}>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid> */}
+        <Table data={data} />
       </Box>
       <Box>
         <Text>© 2022 Chakra Templates. All rights reserved</Text>
