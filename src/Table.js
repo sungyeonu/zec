@@ -3,6 +3,21 @@ import { Box, chakra, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
 
+function compareNumericString(rowA, rowB, id, desc) {
+  let a = Number.parseFloat(rowA.values[id]);
+  let b = Number.parseFloat(rowB.values[id]);
+  if (Number.isNaN(a)) {
+    // Blanks and non-numeric strings to bottom
+    a = desc ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY;
+  }
+  if (Number.isNaN(b)) {
+    b = desc ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY;
+  }
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+}
+
 export default function MainTable({ data }) {
   const columns = useMemo(
     () => [
@@ -27,32 +42,34 @@ export default function MainTable({ data }) {
       {
         Header: '1h % (ZEC)',
         accessor: 'oneHrZEC',
+        sortType: compareNumericString,
         Cell: props =>
           props.value > 0 ? (
             <Box color="green">
               <ChevronUpIcon aria-label="sorted ascending" />
-              {props.value}
+              {props.value}%
             </Box>
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {props.value}
+              {Math.abs(props.value)}%
             </Box>
           ),
       },
       {
         Header: '24h % (ZEC)',
         accessor: 'twentyFourHrZEC',
+        sortType: compareNumericString,
         Cell: props =>
           props.value > 0 ? (
             <Box color="green">
               <ChevronUpIcon aria-label="sorted ascending" />
-              {props.value}
+              {props.value}%
             </Box>
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {props.value}
+              {Math.abs(props.value)}%
             </Box>
           ),
       },
@@ -75,7 +92,10 @@ export default function MainTable({ data }) {
           {headerGroups.map(headerGroup => (
             <Tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <Th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <Th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  isNumeric={column.isNumeric}
+                >
                   {column.render('Header')}
                   <chakra.span pl="4">
                     {column.isSorted ? (
