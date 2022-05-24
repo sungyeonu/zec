@@ -24,14 +24,37 @@ export default function MainTable({ data }) {
         accessor: 'priceUSD',
         Cell: props => new Intl.NumberFormat().format(props.value),
       },
-
       {
         Header: '1h % (ZEC)',
         accessor: 'oneHrZEC',
+        Cell: props =>
+          props.value > 0 ? (
+            <Box color="green">
+              <ChevronUpIcon aria-label="sorted ascending" />
+              {props.value}
+            </Box>
+          ) : (
+            <Box color="red">
+              <ChevronDownIcon aria-label="sorted descending" />
+              {props.value}
+            </Box>
+          ),
       },
       {
         Header: '24h % (ZEC)',
         accessor: 'twentyFourHrZEC',
+        Cell: props =>
+          props.value > 0 ? (
+            <Box color="green">
+              <ChevronUpIcon aria-label="sorted ascending" />
+              {props.value}
+            </Box>
+          ) : (
+            <Box color="red">
+              <ChevronDownIcon aria-label="sorted descending" />
+              {props.value}
+            </Box>
+          ),
       },
       {
         Header: 'market cap (ZEC)',
