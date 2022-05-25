@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaDiscord } from 'react-icons/fa';
+import { FaDiscord, FaTwitter } from 'react-icons/fa';
 import { Logo } from '../Logo';
 
 const SocialButton = ({ children, label, href }) => {
@@ -52,7 +52,13 @@ export default function SmallWithLogoLeft() {
         <Logo h={6} />
         <Text>© 2022 Chakra Templates. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'DISCORD'} href={'#'}>
+          <SocialButton
+            label={'TwitterLink'}
+            href={'https://twitter.com/zcashug'}
+          >
+            <FaTwitter />
+          </SocialButton>
+          <SocialButton label={'DiscordLink'} href={'#'}>
             <FaDiscord />
           </SocialButton>
         </Stack>
