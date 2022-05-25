@@ -4,6 +4,7 @@ import Converter from './components/Converter';
 import Footer from './components/Footer';
 import AppBar from './components/Navbar/AppBar';
 import Table from './Table';
+
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
