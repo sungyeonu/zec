@@ -21,10 +21,11 @@ import { useState } from 'react';
 const ConvertButton = ({ children, label }) => {
   return (
     <chakra.button
-      border={'1px solid lightgray'}
+      border={useColorModeValue('1px solid lightgray', '1px solid #444444')}
       rounded={'full'}
       w={8}
       h={8}
+      marginBottom={{ md: 1 }}
       cursor={'pointer'}
       as={'a'}
       display={'inline-flex'}
@@ -157,7 +158,7 @@ export default function Converter({ data, timeOffset }) {
           textAlign={'center'}
           color={error ? 'red.500' : 'gray.500'}
         >
-          Last updated on {timeOffset} seconds ago
+          Last updated {timeOffset} seconds ago
         </Text>
       </Container>
     </Flex>

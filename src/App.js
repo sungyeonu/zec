@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, Text, theme } from '@chakra-ui/react';
+import { Box, ChakraProvider, theme, Center } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Converter from './components/Converter';
 import Footer from './components/Footer';
@@ -7,6 +7,7 @@ import Table from './Table';
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
+  const [error, setError] = useState(false);
   const timeOffset = Math.trunc(
     (new Date().getTime() - parseInt(lastRefreshedDate)) / 1000
   );
@@ -19,7 +20,10 @@ function App() {
     })
       .then(res => res.json())
       .then(data => setData(data))
-      .catch(error => console.log(error));
+      .catch(error => {
+        setError(error);
+        console.log(error);
+      });
 
     const dateUrl = 'https://cmc-api-backend.herokuapp.com/getLastRefreshed';
     fetch(dateUrl, {
@@ -28,16 +32,29 @@ function App() {
     })
       .then(res => res.text())
       .then(date => setLastRefreshedDate(date))
-      .catch(error => console.log(error));
+      .catch(error => {
+        setError(error);
+        console.log(error);
+      });
   }, []);
 
   return (
     <ChakraProvider theme={theme}>
       <AppBar />
-      <Converter data={data} timeOffset={timeOffset} />
-      <Box marginX={{ md: 12 }}>
-        <Table data={data} />
-      </Box>
+      <>
+        {!error ? (
+          <>
+            <Converter data={data} timeOffset={timeOffset} />
+            <Box marginX={{ md: 12 }}>
+              <Table data={data} />
+            </Box>
+          </>
+        ) : (
+          <Center height={'90vh'}>
+            <h1> Oops... There is an error!</h1>
+          </Center>
+        )}
+      </>
 
       <Footer />
     </ChakraProvider>
