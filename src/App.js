@@ -47,7 +47,7 @@ function App() {
           <>
             <Converter data={data} timeOffset={timeOffset} />
             <Box marginX={{ md: 12 }}>
-              <Table data={data} />
+              <Table data={data.slice(0, 40)} />
             </Box>
           </>
         ) : (
