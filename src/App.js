@@ -6,6 +6,7 @@ import AppBar from './components/Navbar/AppBar';
 import Table from './Table';
 import PostEntry from './components/PostEntry';
 
+
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
@@ -48,7 +49,7 @@ function App() {
           <>
             <Converter data={data} timeOffset={timeOffset} />
             <Box marginX={{ md: 12 }}>
-              <Table data={data} />
+              <Table data={data.slice(0, 40)} />
             </Box>
             <PostEntry />
           </>
