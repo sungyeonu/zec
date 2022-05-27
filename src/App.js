@@ -4,6 +4,8 @@ import Converter from './components/Converter';
 import Footer from './components/Footer';
 import AppBar from './components/Navbar/AppBar';
 import Table from './Table';
+import PostEntry from './components/PostEntry';
+
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
@@ -48,6 +50,7 @@ function App() {
             <Box marginX={{ md: 12 }}>
               <Table data={data} />
             </Box>
+            <PostEntry />
           </>
         ) : (
           <Center height={'90vh'}>
