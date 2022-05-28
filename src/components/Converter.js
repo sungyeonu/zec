@@ -93,7 +93,8 @@ export default function Converter({ data, timeOffset }) {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}
-      marginBottom={{ base: 0, sm: 12 }}
+      marginBottom={{ base: 8, sm: 12 }}
+      // marginTop={{ base: 4 }}
     >
       <Container
         maxW={'4xl'}

@@ -6,7 +6,6 @@ import AppBar from './components/Navbar/AppBar';
 import Table from './Table';
 import PostEntry from './components/PostEntry';
 
-
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
@@ -51,7 +50,9 @@ function App() {
             <Box marginX={{ md: 12 }}>
               <Table data={data.slice(0, 40)} />
             </Box>
-            <PostEntry />
+            <Box marginY={12}>
+              <PostEntry />
+            </Box>
           </>
         ) : (
           <Center height={'90vh'}>
