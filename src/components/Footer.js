@@ -50,7 +50,7 @@ export default function SmallWithLogoLeft() {
         align={{ base: 'center', md: 'center' }}
       >
         <Logo h={6} />
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        <Text>© 2022 Zcash Users Group. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton
             label={'ShoppingLink'}
