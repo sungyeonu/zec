@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Converter from './components/Converter';
 import Footer from './components/Footer';
 import AppBar from './components/Navbar/AppBar';
-import Table from './Table';
+import Table from './components/Table';
 import PostEntry from './components/PostEntry';
 
 function App() {

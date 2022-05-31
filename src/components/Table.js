@@ -32,12 +32,12 @@ export default function MainTable({ data }) {
       {
         Header: 'price (Zcash)',
         accessor: 'priceZEC',
-        Cell: props => new Intl.NumberFormat().format(props.value),
+        Cell: props => 'ⓩ' + new Intl.NumberFormat().format(props.value),
       },
       {
         Header: 'price (USD)',
         accessor: 'priceUSD',
-        Cell: props => new Intl.NumberFormat().format(props.value),
+        Cell: props => '$' + new Intl.NumberFormat().format(props.value),
       },
       {
         Header: '1h % (ZEC)',
@@ -76,7 +76,7 @@ export default function MainTable({ data }) {
       {
         Header: 'market cap (ZEC)',
         accessor: 'marketcapZEC',
-        Cell: props => new Intl.NumberFormat().format(props.value),
+        Cell: props => 'ⓩ' + new Intl.NumberFormat().format(props.value),
       },
     ],
     []
