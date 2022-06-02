@@ -1,8 +1,3 @@
-// return convereted data
-import { RepeatIcon } from '@chakra-ui/icons';
-import { FaExchangeAlt } from 'react-icons/fa';
-
-//FaExchangeAlt
 import {
   Box,
   chakra,
@@ -21,6 +16,7 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { FaExchangeAlt } from 'react-icons/fa';
 
 const ConvertButton = ({ children, label }) => {
   return (
@@ -170,7 +166,7 @@ const timeOffsetText = (timeOffset, error) =>
       Last updated {timeOffset} seconds ago
     </Text>
   ) : (
-    <Text textAlign={'center'}>
+    <Box textAlign={'center'}>
       <Spinner />
-    </Text>
+    </Box>
   );
