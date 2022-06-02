@@ -1,5 +1,16 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
-import { Box, chakra, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import {
+  Box,
+  chakra,
+  Flex,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
 
@@ -27,7 +38,16 @@ export default function MainTable({ data }) {
       },
       {
         Header: 'name',
-        accessor: 'name',
+        accessor: d => `${d.name} ${d.symbol}`,
+        Cell: props => (
+          <Flex>
+            <Text>{props.row.original.name + ' '}</Text>
+            {/* trying to add a space here like this won't fuckign work, I added artifical space by adding margin to this other text sigh */}
+            <Text color="gray.500" marginLeft={2}>
+              {props.row.original.symbol}
+            </Text>
+          </Flex>
+        ),
       },
       {
         Header: 'price (Zcash)',
