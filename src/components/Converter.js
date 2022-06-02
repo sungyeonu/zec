@@ -1,5 +1,8 @@
 // return convereted data
 import { RepeatIcon } from '@chakra-ui/icons';
+import { FaExchangeAlt } from 'react-icons/fa';
+
+//FaExchangeAlt
 import {
   Box,
   chakra,
@@ -11,6 +14,7 @@ import {
   Input,
   InputGroup,
   Select,
+  Spinner,
   Stack,
   Text,
   useColorModeValue,
@@ -93,7 +97,7 @@ export default function Converter({ data, timeOffset }) {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}
-      marginBottom={{ base: 8, sm: 12 }}
+      marginY={{ base: 8, sm: 12 }}
       // marginTop={{ base: 4 }}
     >
       <Container
@@ -133,7 +137,7 @@ export default function Converter({ data, timeOffset }) {
           <Box display="flex" alignItems={'flex-end'}>
             <FormControl w={{ base: '10%' }}>
               <ConvertButton label={'convert'}>
-                <RepeatIcon color="blue.500" onClick={handleButtonClick} />
+                <FaExchangeAlt onClick={handleButtonClick} />
               </ConvertButton>
             </FormControl>
           </Box>
@@ -154,14 +158,19 @@ export default function Converter({ data, timeOffset }) {
           {amount} {fromCurrency} ={' '}
           {convertPrice(amount, fromCurrency, toCurrency)} {toCurrency}
         </Text>
-        <Text
-          mt={2}
-          textAlign={'center'}
-          color={error ? 'red.500' : 'gray.500'}
-        >
-          Last updated {timeOffset} seconds ago
-        </Text>
+        {timeOffsetText(timeOffset, error)}
       </Container>
     </Flex>
   );
 }
+
+const timeOffsetText = (timeOffset, error) =>
+  !isNaN(timeOffset) ? (
+    <Text mt={2} textAlign={'center'} color={error ? 'red.500' : 'gray.500'}>
+      Last updated {timeOffset} seconds ago
+    </Text>
+  ) : (
+    <Text textAlign={'center'}>
+      <Spinner />
+    </Text>
+  );
