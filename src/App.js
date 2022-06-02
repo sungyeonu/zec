@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, theme, Center } from '@chakra-ui/react';
+import { Box, ChakraProvider, theme, Center, Text, Stack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Converter from './components/Converter';
 import Footer from './components/Footer';
@@ -13,6 +13,7 @@ function App() {
   const timeOffset = Math.trunc(
     (new Date().getTime() - parseInt(lastRefreshedDate)) / 1000
   );
+  const [ad, setAd] = useState();
 
   useEffect(() => {
     const dataUrl = 'https://cmc-api-backend.herokuapp.com/getFeed';
@@ -38,7 +39,21 @@ function App() {
         setError(error);
         console.log(error);
       });
-  }, []);
+    
+    const adUrl = 'https://cmc-api-backend.herokuapp.com/getMostRecentMessage';
+    fetch(adUrl, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/text' },
+    })
+      .then(res => res.text())
+      .then(ad => setAd(ad))
+      .then(console.log(ad))
+      .catch(error => {
+        setError(error);
+        console.log(error);
+      });
+  
+    }, []);
 
   return (
     <ChakraProvider theme={theme}>
@@ -46,6 +61,8 @@ function App() {
       <>
         {!error ? (
           <>
+            <Text fontSize='5xl'>{ad}</Text>
+            
             <Converter data={data} timeOffset={timeOffset} />
             <Box marginX={{ md: 12 }}>
               <Table data={data.slice(0, 40)} />
