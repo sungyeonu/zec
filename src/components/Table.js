@@ -67,12 +67,12 @@ export default function MainTable({ data }) {
           props.value > 0 ? (
             <Box color="green">
               <ChevronUpIcon aria-label="sorted ascending" />
-              {props.value}%
+              {props.value.toFixed(2)}%
             </Box>
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {Math.abs(props.value)}%
+              {Math.abs(props.value.toFixed(2))}%
             </Box>
           ),
       },
@@ -84,12 +84,12 @@ export default function MainTable({ data }) {
           props.value > 0 ? (
             <Box color="green">
               <ChevronUpIcon aria-label="sorted ascending" />
-              {props.value}%
+              {props.value.toFixed(2)}%
             </Box>
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {Math.abs(props.value)}%
+              {Math.abs(props.value.toFixed(2))}%
             </Box>
           ),
       },
