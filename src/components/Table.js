@@ -14,6 +14,11 @@ import {
 import { useMemo } from 'react';
 import { useSortBy, useTable } from 'react-table';
 
+const options = {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+};
+
 function compareNumericString(rowA, rowB, id, desc) {
   let a = Number.parseFloat(rowA.values[id]);
   let b = Number.parseFloat(rowB.values[id]);
@@ -52,12 +57,12 @@ export default function MainTable({ data }) {
       {
         Header: 'price (Zcash)',
         accessor: 'priceZEC',
-        Cell: props => 'ⓩ' + new Intl.NumberFormat().format(props.value),
+        Cell: props => 'ⓩ' + props.value.toFixed(2),
       },
       {
         Header: 'price (USD)',
         accessor: 'priceUSD',
-        Cell: props => '$' + new Intl.NumberFormat().format(props.value),
+        Cell: props => '$' + Number(props.value).toLocaleString('en', options),
       },
       {
         Header: '1h % (ZEC)',
@@ -72,7 +77,7 @@ export default function MainTable({ data }) {
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {Math.abs(props.value.toFixed(2))}%
+              {Math.abs(props.value).toFixed(2)}%
             </Box>
           ),
       },
@@ -89,14 +94,14 @@ export default function MainTable({ data }) {
           ) : (
             <Box color="red">
               <ChevronDownIcon aria-label="sorted descending" />
-              {Math.abs(props.value.toFixed(2))}%
+              {Math.abs(props.value).toFixed(2)}%
             </Box>
           ),
       },
       {
         Header: 'market cap (ZEC)',
         accessor: 'marketcapZEC',
-        Cell: props => 'ⓩ' + new Intl.NumberFormat().format(props.value),
+        Cell: props => '$' + Number(props.value).toLocaleString('en'),
       },
     ],
     []

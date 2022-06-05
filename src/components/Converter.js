@@ -89,12 +89,10 @@ export default function Converter({ data, timeOffset }) {
 
   return (
     <Flex
-      minH={'40vh'}
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}
-      marginY={{ base: 8, sm: 12 }}
-      // marginTop={{ base: 4 }}
+      marginBottom={8}
     >
       <Container
         maxW={'4xl'}

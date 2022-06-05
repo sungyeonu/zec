@@ -1,11 +1,18 @@
-import { Box, ChakraProvider, theme, Center, Text, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  ChakraProvider,
+  theme,
+  Center,
+  Text,
+  Stack,
+} from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import Converter from './components/Converter';
 import Footer from './components/Footer';
 import AppBar from './components/Navbar/AppBar';
 import Table from './components/Table';
 import PostEntry from './components/PostEntry';
-
+import AdContainer from './components/AdContainer';
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
@@ -39,7 +46,7 @@ function App() {
         setError(error);
         console.log(error);
       });
-    
+
     const adUrl = 'https://cmc-api-backend.herokuapp.com/getMostRecentMessage';
     fetch(adUrl, {
       method: 'GET',
@@ -52,8 +59,7 @@ function App() {
         setError(error);
         console.log(error);
       });
-  
-    }, []);
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
@@ -61,8 +67,7 @@ function App() {
       <>
         {!error ? (
           <>
-            <Text fontSize='5xl'>{ad}</Text>
-            
+            <AdContainer ad={ad} />
             <Converter data={data} timeOffset={timeOffset} />
             <Box marginX={{ md: 12 }}>
               <Table data={data.slice(0, 40)} />
