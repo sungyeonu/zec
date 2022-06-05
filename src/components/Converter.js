@@ -92,7 +92,7 @@ export default function Converter({ data, timeOffset }) {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}
-      marginBottom={8}
+      minH={'32vh'}
     >
       <Container
         maxW={'4xl'}
