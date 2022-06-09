@@ -1,30 +1,29 @@
-import {
-  Box,
-  ChakraProvider,
-  theme,
-  Center,
-  Text,
-  Stack,
-} from '@chakra-ui/react';
+import { Box, Center, ChakraProvider, theme } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import Converter from './components/Converter';
+import AdsContainer from './components/AdsContainer';
+import ConverterContainer from './components/ConverterContainer';
 import Footer from './components/Footer';
 import AppBar from './components/Navbar/AppBar';
-import Table from './components/Table';
 import PostEntry from './components/PostEntry';
-import AdContainer from './components/AdContainer';
+import TableContainer from './components/TableContainer';
+
+const URLS = {
+  data: 'https://cmc-api-backend.herokuapp.com/getFeed',
+  date: 'https://cmc-api-backend.herokuapp.com/getLastRefreshed',
+  ads: 'https://cmc-api-backend.herokuapp.com/getAds',
+};
+
 function App() {
   const [data, setData] = useState([]);
   const [lastRefreshedDate, setLastRefreshedDate] = useState();
   const [error, setError] = useState(false);
+  const [ads, setAds] = useState();
   const timeOffset = Math.trunc(
-    (new Date().getTime() - parseInt(lastRefreshedDate)) / 1000
+    (new Date().getTime() - lastRefreshedDate) / 1000
   );
-  const [ad, setAd] = useState();
 
   useEffect(() => {
-    const dataUrl = 'https://cmc-api-backend.herokuapp.com/getFeed';
-    fetch(dataUrl, {
+    fetch(URLS.data, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -35,8 +34,7 @@ function App() {
         console.log(error);
       });
 
-    const dateUrl = 'https://cmc-api-backend.herokuapp.com/getLastRefreshed';
-    fetch(dateUrl, {
+    fetch(URLS.date, {
       method: 'GET',
       headers: { 'Content-Type': 'application/text' },
     })
@@ -47,14 +45,12 @@ function App() {
         console.log(error);
       });
 
-    const adUrl = 'https://cmc-api-backend.herokuapp.com/getMostRecentMessage';
-    fetch(adUrl, {
+    fetch(URLS.ads, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/text' },
+      headers: { 'Content-Type': 'application/json' },
     })
-      .then(res => res.text())
-      .then(ad => setAd(ad))
-      .then(console.log(ad))
+      .then(res => res.json())
+      .then(ads => setAds(ads))
       .catch(error => {
         setError(error);
         console.log(error);
@@ -67,10 +63,10 @@ function App() {
       <>
         {!error ? (
           <>
-            <AdContainer ad={ad} />
-            <Converter data={data} timeOffset={timeOffset} />
+            <AdsContainer ads={ads} />
+            <ConverterContainer data={data} timeOffset={timeOffset} />
             <Box marginX={{ md: 12 }}>
-              <Table data={data.slice(0, 40)} />
+              <TableContainer data={data.slice(0, 40)} />
             </Box>
             <Box marginY={12}>
               <PostEntry />
