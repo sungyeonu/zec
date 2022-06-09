@@ -19,8 +19,11 @@ import { useState } from 'react';
 import QRCode from 'qrcode.react';
 import URLSafeBase64 from 'urlsafe-base64';
 import base64 from 'react-native-base64';
+//const boardZaddr =
+//  'zs1exqwtshqjatwm2ycwvp5vvk4s5ntzxnxju2qm2k4d53t72f8g3syqxhtwzxpum60vfvmk4fn4e6';
+
 const boardZaddr =
-  'zs1exqwtshqjatwm2ycwvp5vvk4s5ntzxnxju2qm2k4d53t72f8g3syqxhtwzxpum60vfvmk4fn4e6';
+  'zs14j8snu93pekhyraazwjfrn627dq4dpuhw0p52jvhg0vwefkl9pc6vt9xqmlh35ny8ajkgdtvedz';
 const amount = 0.01;
 
 export default function PostEntry() {
@@ -67,7 +70,7 @@ export default function PostEntry() {
             includeMargin={true}
             size={128}
             value={`zcash:${boardZaddr}?amount=${amount}&memo=${base64.encode(
-              `${text}`
+              `ZMC::${text}`
             )}`}
           />
         </Stack>
