@@ -63,10 +63,10 @@ function App() {
       <>
         {!error ? (
           <>
-            <AdsContainer ads={ads} />
             <ConverterContainer data={data} timeOffset={timeOffset} />
+            <AdsContainer ads={ads} />
             <Box marginX={{ md: 12 }}>
-              <TableContainer data={data.slice(0, 40)} />
+              <TableContainer data={data} />
             </Box>
             <Box marginY={12}>
               <PostEntry />
