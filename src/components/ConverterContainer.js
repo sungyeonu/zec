@@ -95,7 +95,7 @@ export default function Converter({ data, timeOffset }) {
       padding={4}
     >
       <Container
-        maxW={'4xl'}
+        maxW={'6xl'}
         bg={useColorModeValue('white', 'whiteAlpha.100')}
         boxShadow={'xl'}
         rounded={'lg'}

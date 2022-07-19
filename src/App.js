@@ -62,8 +62,8 @@ function App() {
       <AppBar />
       {!error || !data ? (
         <>
+          {ads && <AdsContainer ads={ads} />}
           <ConverterContainer data={data} timeOffset={timeOffset} />
-          <AdsContainer ads={ads} />
           <Box marginX={{ md: 12 }}>
             <TableContainer data={data} />
           </Box>

@@ -27,9 +27,12 @@ export default function WithSubnavigation() {
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}
+        alignItems={'center'}
+        // align={'center'}
+        id={'mainFlexDiv'}
       >
         <Flex
+          alignItems={'center'}
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}
@@ -43,7 +46,11 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: 'center', md: 'start' }}
+          alignItems={'center'}
+        >
           <Logo h="6" />
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
