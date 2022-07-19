@@ -60,24 +60,22 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <AppBar />
-      <>
-        {!error ? (
-          <>
-            <ConverterContainer data={data} timeOffset={timeOffset} />
-            <AdsContainer ads={ads} />
-            <Box marginX={{ md: 12 }}>
-              <TableContainer data={data} />
-            </Box>
-            <Box marginY={12}>
-              <PostEntry />
-            </Box>
-          </>
-        ) : (
-          <Center height={'90vh'}>
-            <h1> Oops... There is an error!</h1>
-          </Center>
-        )}
-      </>
+      {!error || !data ? (
+        <>
+          <ConverterContainer data={data} timeOffset={timeOffset} />
+          <AdsContainer ads={ads} />
+          <Box marginX={{ md: 12 }}>
+            <TableContainer data={data} />
+          </Box>
+          <Box marginY={12}>
+            <PostEntry />
+          </Box>
+        </>
+      ) : (
+        <Center height={'90vh'}>
+          <h1> Oops... There is an error!</h1>
+        </Center>
+      )}
 
       <Footer />
     </ChakraProvider>
