@@ -1,9 +1,17 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Box,
+  Button,
   Collapse,
   Flex,
   IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Stack,
   useColorModeValue,
   useDisclosure,
@@ -63,6 +71,24 @@ export default function WithSubnavigation() {
           direction={'row'}
           spacing={6}
         >
+          <Popover>
+            <PopoverTrigger>
+              <Button
+                colorScheme="teal"
+                variant="solid"
+                display={{ base: 'none', md: 'block' }}
+                // display={'none'}
+              >
+                Log in
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>This feature is being worked on!</PopoverHeader>
+              <PopoverBody>Like this feature? Fund the devs!</PopoverBody>
+            </PopoverContent>
+          </Popover>
           <ColorModeSwitcher />
         </Stack>
       </Flex>
